@@ -1,0 +1,151 @@
+#to install sun-java6-jdk
+
+cd ~/
+wget https://github.com/flexiondotorg/oab-java6/raw/master/oab-java.sh -O oab-java6.sh
+chmod +x oab-java6.sh
+sudo ./oab-java6.sh
+sudo apt-get update && sudo apt-get install sun-java6-jdk
+
+
+sudo addgroup hadoop
+sudo adduser --ingroup hadoop hduser
+
+su - hduser
+ssh-keygen -t rsa -P ""
+cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+
+#to disable ipv6 add the following lines to /etc/sysctl.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+#Download Hadoop from http://www.apache.org/dyn/closer.cgi/hadoop/core
+
+cd /usr/local
+sudo tar xzf hadoop-1.0.3.tar.gz (hadoop version)
+sudo mv hadoop-1.0.3 hadoop
+sudo chown -R hduser:hadoop hadoop
+
+Add the following lines to the end of the $HOME/.bashrc file of user hduser.
+
+"# Set Hadoop-related environment variables
+export HADOOP_HOME=/usr/local/hadoop
+
+# Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+# Some convenient aliases and functions for running Hadoop-related commands
+unalias fs &> /dev/null
+alias fs="hadoop fs"
+unalias hls &> /dev/null
+alias hls="fs -ls"
+
+# If you have LZO compression enabled in your Hadoop cluster and
+# compress job outputs with LZOP (not covered in this tutorial):
+# Conveniently inspect an LZOP compressed file from the command
+# line; run via:
+#
+# $ lzohead /hdfs/path/to/lzop/compressed/file.lzo
+#
+# Requires installed 'lzop' command.
+#
+lzohead () {
+    hadoop fs -cat $1 | lzop -dc | head -1000 | less
+}
+
+# Add Hadoop bin/ directory to PATH
+export PATH=$PATH:$HADOOP_HOME/bin"
+
+sudo vi /usr/local/hadoop/conf/hadoop-env.sh
+
+change 
+
+# The java implementation to use.  Required.
+# export JAVA_HOME=/usr/lib/j2sdk1.5-sun
+
+to
+
+# The java implementation to use.  Required.
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+$ sudo mkdir -p /app/hadoop/tmp
+$ sudo chown hduser:hadoop /app/hadoop/tmp
+$ sudo chmod 750 /app/hadoop/tmp
+
+
+
+Add the following snippets between the <configuration> ... </configuration> tags in the respective configuration XML file.
+
+hduser@ubuntu:~$ sudo vim /usr/local/hadoop/conf/core-site.xml
+
+"<property>
+  <name>hadoop.tmp.dir</name>
+  <value>/app/hadoop/tmp</value>
+  <description>A base for other temporary directories.</description>
+</property>
+
+<property>
+  <name>fs.default.name</name>
+  <value>hdfs://localhost:54310</value>
+  <description>The name of the default file system.  A URI whose
+  scheme and authority determine the FileSystem implementation.  The
+  uri's scheme determines the config property (fs.SCHEME.impl) naming
+  the FileSystem implementation class.  The uri's authority is used to
+  determine the host, port, etc. for a filesystem.</description>
+</property>"
+
+hduser@ubuntu:~$ sudo vim /usr/local/hadoop/conf/mapred-site.xml
+
+"<property>
+  <name>mapred.job.tracker</name>
+  <value>localhost:54311</value>
+  <description>The host and port that the MapReduce job tracker runs
+  at.  If "local", then jobs are run in-process as a single map
+  and reduce task.
+  </description>
+</property>"
+
+hduser@ubuntu:~$ sudo vim /usr/local/hadoop/conf/hdfs-site.xml
+
+"<property>
+  <name>dfs.replication</name>
+  <value>1</value>
+  <description>Default block replication.
+  The actual number of replications can be specified when the file is created.
+  The default is used if replication is not specified in create time.
+  </description>
+</property>"
+
+
+su - hduser
+
+hduser@ubuntu:~$ /usr/local/hadoop/bin/hadoop namenode -format
+hduser@ubuntu:~$ /usr/local/hadoop/bin/start-all.sh
+hduser@ubuntu:~$ jps
+
+Expected Output:
+
+"2287 TaskTracker
+2149 JobTracker
+1938 DataNode
+2085 SecondaryNameNode
+2349 Jps
+1788 NameNode"
+
+sudo netstat -plten | grep java
+
+Expected Output:
+
+"hduser@ubuntu:~$ sudo netstat -plten | grep java
+tcp   0  0 0.0.0.0:50070   0.0.0.0:*  LISTEN  1001  9236  2471/java
+tcp   0  0 0.0.0.0:50010   0.0.0.0:*  LISTEN  1001  9998  2628/java
+tcp   0  0 0.0.0.0:48159   0.0.0.0:*  LISTEN  1001  8496  2628/java
+tcp   0  0 0.0.0.0:53121   0.0.0.0:*  LISTEN  1001  9228  2857/java
+tcp   0  0 127.0.0.1:54310 0.0.0.0:*  LISTEN  1001  8143  2471/java
+tcp   0  0 127.0.0.1:54311 0.0.0.0:*  LISTEN  1001  9230  2857/java
+tcp   0  0 0.0.0.0:59305   0.0.0.0:*  LISTEN  1001  8141  2471/java
+tcp   0  0 0.0.0.0:50060   0.0.0.0:*  LISTEN  1001  9857  3005/java
+tcp   0  0 0.0.0.0:49900   0.0.0.0:*  LISTEN  1001  9037  2785/java
+tcp   0  0 0.0.0.0:50030   0.0.0.0:*  LISTEN  1001  9773  2857/java"
+
+hduser@ubuntu:~$ /usr/local/hadoop/bin/stop-all.sh
