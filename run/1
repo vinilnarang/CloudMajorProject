@@ -1,0 +1,7 @@
+Start Hadoop
+Start JobTracker TaskTracker
+Start Hbase
+Start ZooKeeper-Server
+Start Hue
+
+http://blog.cloudera.com/blog/2013/09/how-to-use-hbase-bulk-loading-and-why/
