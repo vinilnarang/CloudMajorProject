@@ -1,0 +1,190 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Choose visualization type - DataViz</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/front-end.css" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+	<style type="text/css">
+		.thumbnail
+		{
+			border:none;
+			margin:1px;
+		}
+	</style>
+
+
+    <!-- Local file and URL show/hide-->
+    <script type="text/javascript">
+		$(document).ready (function() 
+			{
+				
+			});
+	</script>
+    
+  </head>
+
+  <body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+          <a class="navbar-brand logo-nav" href="index.html"><img src="http://images.cooltext.com/3436341.png"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+
+<div class="container">
+
+      <!-- Sidebar -->
+      
+      <br />
+      <br /> 
+	
+      <div id="page-wrapper">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Visualization  <small>Choose visualization type</small></h1>
+            <ol class="breadcrumb">
+              <li><a href="index.html"><i class="fa fa-dashboard"></i> DataViz</a></li>
+              <li class="active"><i class="fa fa-bar-chart-o"></i> Visualization type</li>
+            </ol>
+            
+          </div>
+        </div><!-- /.row -->
+
+        <div class="row">
+          <div class="col-lg-6">
+
+            <form role="form" action="choose_viz.html">
+			
+             <div class="form-group">
+				  <table>
+					<thead>
+						<tr>
+                          <td>
+                            <label>Choose a visualization type</label>
+                          </td>
+                      	</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<td>
+							<div class="radio">
+								<input type="radio" name="viz" id="barVertiRadio" value="bar_v" checked="">
+							<label>	Bar chart (Vertical)</label>
+						</div></td>
+						<td><img class="thumbnail"  src="thumbnails/bar_v.jpg"></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label>	
+									<input type="radio" name="viz" id="barHoriRadio" value="bar_h">
+									Bar chart (Horizontal)
+								</label>
+						</div></td>
+						<td><img class="thumbnail"  src="thumbnails/bar_h.jpg"></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label><input type="radio" name="viz" id="pieRadio" value="pie">
+										Pie chart
+								</label>
+							</div>
+						</td>
+						<td><img class="thumbnail"  src="thumbnails/pie.jpg"></td>
+					</tr>
+					
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label>
+									<input type="radio" name="viz" id="bubbleRadio" value="bubble">
+									Bubble chart
+								</label>
+							</div>
+						</td>
+						<td><img class="thumbnail"  src="thumbnails/bubble.jpg"></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label>
+									<input type="radio" name="viz" id="treemapRadio" value="treemap">
+									Treemap
+								</label>
+							</div>
+						</td>
+						<td><img class="thumbnail"  src="thumbnails/treemap.jpg"></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label>
+									<input type="radio" name="viz" id="word_cloud" value="word_cloud">
+									Word cloud
+								</label>
+							</div>
+						</td>
+						<td><img class="thumbnail"  src="thumbnails/word_cloud.jpg"></td>
+					</tr>
+					
+				</tbody>						
+				</table>                
+				  
+			</div>
+			<button type="submit" class="btn btn-default">Next</button>
+              
+
+            </form>
+
+          </div>
+          
+        </div><!-- /.row -->
+
+      </div><!-- /#page-wrapper -->
+
+    </div><!-- /#wrapper -->
+
+
+</body></html>
