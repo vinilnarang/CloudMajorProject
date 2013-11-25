@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}Choose visualization type{% endblock %}
+
+{% block breadcrumb_title %}Visualization{% endblock %}
+{% block breadcrumb_desc %}Choose visualization type{% endblock %}
+{% block breadcrumb_nav %}Visualization{% endblock %}
+
+{% block content %}
+        <div class="row">
+          <div class="col-lg-6">
+
+            <form role="form" action='{% url data_demo.views.visualization %}'>
+			
+             <div class="form-group">
+				  <table>
+					<thead>
+						<tr>
+                          <td>
+                            <label>Choose a visualization type</label>
+                          </td>
+                      	</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<td>
+							<div class="radio">
+								<input type="radio" name="viz" id="barVertiRadio" value="bar_v" checked="">
+							<label>	Bar chart (Vertical)</label>
+						</div></td>
+						<td><img class="thumbnail"  src="/data_demo/static/thumbnails/bar_v.jpg"></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label>	
+									<input type="radio" name="viz" id="barHoriRadio" value="bar_h">
+									Bar chart (Horizontal)
+								</label>
+						</div></td>
+						<td><img class="thumbnail"  src="/data_demo/static/thumbnails/bar_h.jpg"></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label><input type="radio" name="viz" id="pieRadio" value="pie">
+										Pie chart
+								</label>
+							</div>
+						</td>
+						<td><img class="thumbnail"  src="/data_demo/static/thumbnails/pie.jpg"></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div class="radio">
+								<label>
+									<input type="radio" name="viz" id="lineRadio" value="line">
+									Line chart
+								</label>
+							</div>
+						</td>
+						<td><img class="thumbnail"  src="/data_demo/static/thumbnails/line.jpeg" width="80" height="60"></td>
+					</tr>
+					
+					
+				</tbody>						
+				</table>                
+				  
+			</div>
+			<button type="submit" class="btn btn-default">Next</button>
+			
+            </form>
+
+          </div>
+          
+        </div><!-- /.row -->
+
+      </div><!-- /#page-wrapper -->
+
+    </div><!-- /#wrapper -->
+{% endblock %}

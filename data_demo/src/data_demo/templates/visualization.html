@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}Visualized!{% endblock %}
+
+{% block breadcrumb_title %}Visualized!{% endblock %}
+{% block breadcrumb_nav %}Visualized!{% endblock %}
+
+{% block content %}
+
+<div class="row">
+        <div class="col-lg-8">
+          <img class="img-responsive img-rounded" src="http://www.jeffersoninst.org/sites/default/files/dataviz.jpg"><!-- take out img-rounded if you don't want the rounded corners on the image -->
+        </div>
+        <div class="col-lg-4">
+          <h1>DataViz</h1>
+          <p>Visualize your data!</p>
+          <br /><br />
+          <a class="btn btn-primary btn-lg" href="#learnmore">Learn more</a>
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div class="row"  id="learnmore">
+        <div class="col-lg-12">
+          <div class="well text-center">
+            Visualize your data in three easy steps...
+          </div>
+        </div>
+      </div>
+
+     <div class="row">
+        <div class="col-sm-4">
+        	<img class="img-circle img-responsive text-center" src="http://s8.postimg.org/4upqqpwed/data.png">
+            <h2>#1 Upload a dataset</h2>
+            <p>First things first.
+				<br>Upload the data that you would like to visualize.</p>
+        </div>
+        <div class="col-sm-4">
+        	<img class="img-circle img-responsive" src="http://s23.postimg.org/u4b5bqbe3/viz.jpg">
+            <h2>#2 Choose a visualization</h2>
+            <p>Then choose the kind of visualization you would like to use.</p>
+        </div>
+        <div class="col-sm-4">
+        	<img class="img-circle img-responsive" src="http://s22.postimg.org/pac8f90zl/bar_chart.png">
+            <h2>#3 Customize & Publish</h2>
+            <p>Customize what your visualization will look like. Then publish it.</p>
+        </div>
+      </div>
+      
+      <div class="row"  id="learnmore">
+        <div class="col-lg-12">
+          <div class="well text-center">
+				<a class="btn btn-primary btn-lg" href='{% url "views.data_upload" %}'>Try it out!</a>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}
+

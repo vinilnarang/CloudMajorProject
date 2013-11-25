@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}Data{% endblock %}
+
+
+
+{% block breadcrumb_title %}Data{% endblock %}
+{% block breadcrumb_desc %}Upload your data{% endblock %}
+{% block breadcrumb_nav %}Data{% endblock %}
+
+{% block content %}
+      
+	<div id="wrapper">
+      <div id="page-wrapper">
+
+        
+
+        <div class="row">
+          <div class="col-lg-6">
+
+            <form role="form" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+              <div class="form-group">
+                <label>Choose file format: </label>
+                <label class="radio-inline">
+                  <input type="radio" name="file_format" id="csvRadio" value="csv" checked=""> csv
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="file_format" id="tsvRadio" value="tsv"> tsv
+                </label>
+              </div>          
+
+              <div class="form-group" id="local_file">
+
+				{{ form }}
+
+              </div>
+              
+              <div class="form-group">
+                <label>Description (Optional):</label>
+                <textarea class="form-control" rows="3" name='file_desc'></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-default">Next</button>
+
+            </form>
+
+          </div>
+          
+        </div><!-- /.row -->
+
+      </div><!-- /#page-wrapper -->
+
+    </div><!-- /#wrapper -->
+    
+    {% endblock %}

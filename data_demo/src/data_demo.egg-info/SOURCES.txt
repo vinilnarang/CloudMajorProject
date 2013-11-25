@@ -1,0 +1,14 @@
+setup.py
+src/data_demo/__init__.py
+src/data_demo/forms.py
+src/data_demo/models.py
+src/data_demo/settings.py
+src/data_demo/urls.py
+src/data_demo/views.py
+src/data_demo.egg-info/PKG-INFO
+src/data_demo.egg-info/SOURCES.txt
+src/data_demo.egg-info/dependency_links.txt
+src/data_demo.egg-info/entry_points.txt
+src/data_demo.egg-info/not-zip-safe
+src/data_demo.egg-info/requires.txt
+src/data_demo.egg-info/top_level.txt
